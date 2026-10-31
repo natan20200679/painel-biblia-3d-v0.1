@@ -17,6 +17,12 @@ class LoginTestCase(TestCase):
             tipo='ALUNO'
         )
 
+    def test_pagina_de_login_renderiza(self):
+        resposta = self.client.get(reverse('login'))
+
+        self.assertEqual(resposta.status_code, 200)
+        self.assertTemplateUsed(resposta, 'login.html')
+
     def test_login_com_credenciais_validas(self):
         form = LoginForm(
             data={

@@ -13,14 +13,20 @@ from .forms import CadastroForm
 
 
 def login_view(request):
-    
-     if request.method == 'POST':
+    if request.method == 'POST':
         nome = request.POST.get('nome')
         senha = request.POST.get('password')
         usuario = authenticate(request, username=nome, password=senha)
         if usuario is not None:
             auth_login(request, usuario)
             return redirect('area_aluno')  # ou outra página válida
+
+        return render(request, 'login.html', {
+            'form': LoginForm(),
+            'erro': 'Nome de usuário ou senha inválidos.',
+        })
+
+    return render(request, 'login.html', {'form': LoginForm()})
 
 
 def tipo_usuario_required(tipo_permitido):
