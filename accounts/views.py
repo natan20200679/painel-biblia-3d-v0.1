@@ -1,4 +1,4 @@
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login as auth_login
 from django.shortcuts import render, redirect
 from .forms import LoginForm
 from functools import wraps
@@ -7,7 +7,6 @@ from django.core.exceptions import PermissionDenied
 from .models import Usuario
 from django.http import JsonResponse
 from .forms import LoginForm
-from django.contrib.auth import logout
 from django.views.decorators.http import require_POST
 from django.views.decorators.http import require_POST
 from .forms import CadastroForm
@@ -15,15 +14,13 @@ from .forms import CadastroForm
 
 def login_view(request):
     
-    if request.method == 'POST':
+     if request.method == 'POST':
         nome = request.POST.get('nome')
         senha = request.POST.get('password')
-        usuario = authenticate(request, nome = nome, senha = senha)
+        usuario = authenticate(request, username=nome, password=senha)
         if usuario is not None:
             auth_login(request, usuario)
-            return redirect('login')
-    
-    return render(request, 'accounts/login.html') 
+            return redirect('area_aluno')  # ou outra página válida
 
 
 def tipo_usuario_required(tipo_permitido):

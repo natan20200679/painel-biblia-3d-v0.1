@@ -6,14 +6,14 @@ from .models import Usuario
 
 class LoginForm(AuthenticationForm):
 
-    nome = forms.CharField(
+    username = forms.CharField(
         label='Usuário',
         widget=forms.TextInput(attrs={
             'placeholder': 'Digite seu usuário'
         })
     )
 
-    senha = forms.CharField(
+    password = forms.CharField(
         label='Senha',
         strip=False,
         widget=forms.PasswordInput(attrs={

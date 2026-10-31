@@ -104,7 +104,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
-LOGIN_URL = '/login/'
+LOGIN_URL = 'login'
 
 STATIC_URL = 'static/'
 
@@ -122,6 +122,5 @@ MAILERS = {
 
 AUTH_USER_MODEL = 'accounts.Usuario'
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_REDIRECT_URL = 'area_aluno'
 LOGOUT_REDIRECT_URL = 'login'
