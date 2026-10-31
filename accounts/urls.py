@@ -1,5 +1,5 @@
 from django.urls import path
-from views import(login_view, logout_view, area_aluno, area_instituicao, cadastro_view, status_api)
+from .views import(login_view, logout_view, area_aluno, area_instituicao, cadastro_view, status_api)
 
 
 urlpatterns = [
